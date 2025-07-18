@@ -7,7 +7,7 @@ interface NoticiaPageProps {
 }
 
 export default async function NoticiaPage({ params }: NoticiaPageProps) {
-  const res = await fetch(`http://localhost:3000/api/news/${params.slug}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/news/${params.slug}`, {
     cache: "no-store",
   });
   if (!res.ok) {
