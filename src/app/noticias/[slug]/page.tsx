@@ -2,9 +2,14 @@ import React from "react";
 import { News } from "@/app/types";
 import Image from "next/image";
 
+interface NoticiaPageProps {
+  params: Promise<{ slug: string }>;
+}
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default async function NoticiaPage({ params }: any) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/news/${params.slug}`, {
+export default async function NoticiaPage({ params }: NoticiaPageProps) {
+  const { slug } = await params;
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/news/${slug}`, {
     cache: "no-store",
   });
   if (!res.ok) {
